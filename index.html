@@ -3,19 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para ti</title>
+    <title>Para Mi Valentín</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="contenedor">
-        <h1>¿Quieres ser mi San Valentín? ❤️</h1>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIxdm92ZXB6eHR6eHozbHh6bHh6bHh6bHh6bHh6bHh6bHh6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Gatito" id="gatito">
+
+    <div class="game-container">
+        <div class="marble-column column-left"></div>
+        <div class="marble-column column-right"></div>
+
+        <div id="envelope-layer" onclick="openLetter()">
+            <div class="pixel-envelope"></div>
+            <p style="font-size: 10px;">TIENES UN MENSAJE</p>
+        </div>
+
+        <div class="cat-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndmR4ZWZ6Z3R4bmR4Z3R4bmR4Z3R4bmR4Z3R4bmR4Z3R4bmR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZ2VudGlmaWVyJmN0PXMvSjd0N09mN09mN09mSjd0N09m/giphy.gif" alt="cat" class="pixel-cat">
+        </div>
+        <h1>¿Quieres ser mi Valentín?</h1>
         
-        <div class="botones">
-            <button id="btnSi">SÍ</button>
-            <button id="btnNo">NO</button>
+        <div class="btn-group">
+            <button id="yes-btn" onclick="showFinal()">SÍ</button>
+            <button id="no-btn" onmouseover="moveNoButton()">NO</button>
+        </div>
+
+        <div id="final-letter">
+            <h2 style="font-size: 12px; color: #d4af37;">♥ MI QUERIDA PERSONA ♥</h2>
+            <div class="scroll-text">
+                Desde el Olimpo hasta la Tierra, no hay nadie que brille tanto como tú. Eres el mármol más fino de mi templo y la música de mi lira. Gracias por decir que sí.
+                <br><br>
+                Te quiero mucho.
+            </div>
+            <button onclick="location.reload()" style="margin-top: 20px; font-size: 8px;">Cerrar</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

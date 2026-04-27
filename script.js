@@ -1,18 +1,21 @@
-const btnNo = document.querySelector("#btnNo");
-const btnSi = document.querySelector("#btnSi");
+function openLetter() {
+    const envelope = document.getElementById('envelope-layer');
+    envelope.classList.add('opened');
+}
 
-// Función para mover el botón NO a una posición aleatoria
-btnNo.addEventListener("mouseover", function() {
-    const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
-    const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+function moveNoButton() {
+    const btn = document.getElementById('no-btn');
     
-    btnNo.style.left = x + "px";
-    btnNo.style.top = y + "px";
-});
+    // Generar posiciones aleatorias para que el botón "huya"
+    // Los números limitan el movimiento dentro del cuadro principal
+    const newX = Math.random() * (300 - 50) + 10;
+    const newY = Math.random() * (200 - 50) + 10;
+    
+    btn.style.left = `${newX}px`;
+    btn.style.top = `${newY}px`;
+}
 
-// Lo que pasa cuando por fin le da al SÍ
-btnSi.addEventListener("click", function() {
-    alert("¡Sabía que dirías que sí! ❤️ Nos vemos pronto.");
-    // Opcional: Redirigir a un video o mensaje especial
-    // window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; 
-});
+function showFinal() {
+    const finalLetter = document.getElementById('final-letter');
+    finalLetter.style.display = 'block';
+}
