@@ -1,21 +1,202 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para ti</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💌 Epistola Amoris</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="contenedor">
-        <h1>¿Quieres ser mi San Valentín? ❤️</h1>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIxdm92ZXB6eHR6eHozbHh6bHh6bHh6bHh6bHh6bHh6bHh6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Gatito" id="gatito">
-        
-        <div class="botones">
-            <button id="btnSi">SÍ</button>
-            <button id="btnNo">NO</button>
+
+  <!-- Partículas de fondo flotantes -->
+  <div id="particles" aria-hidden="true"></div>
+
+  <!-- Marco decorativo de página (CSS lo pinta) -->
+
+  <!-- ══════════════════════════════════════════════════
+       ESCENA 1 — SOBRE CERRADO
+       El usuario ve el sobre y hace clic para abrirlo
+  ══════════════════════════════════════════════════ -->
+  <section class="scene active" id="scene-envelope">
+
+    <p class="eyebrow">✦ Una Misiva del Corazón ✦</p>
+    <h1 class="main-title">Epistola Amoris</h1>
+
+    <div class="envelope-outer" id="envelopeOuter"
+         onclick="openEnvelope()"
+         role="button" tabindex="0"
+         aria-label="Abrir la carta">
+
+      <!-- Perspectiva 3D para la animación de la solapa -->
+      <div class="envelope-3d">
+        <div class="envelope" id="envelope">
+          <!-- Parte trasera (fondo del sobre) -->
+          <div class="env-back"></div>
+          <!-- Solapa superior — ésta se anima hacia atrás -->
+          <div class="env-flap" id="envFlap"></div>
+          <!-- Cuerpo del sobre con el sello de cera -->
+          <div class="env-body">
+            <div class="wax-seal" id="waxSeal">
+              <span class="wax-glyph">♥</span>
+            </div>
+          </div>
+          <!-- La carta que asoma al abrirse -->
+          <div class="letter-peek" id="letterPeek">
+            <div class="peek-ornament">✦</div>
+          </div>
         </div>
+      </div>
+
+      <p class="tap-hint" id="tapHint">✦ Toca para abrir ✦</p>
     </div>
-    <script src="script.js"></script>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ESCENA 2 — VENTANA CON GATITO Y BOTONES
+  ══════════════════════════════════════════════════ -->
+  <section class="scene" id="scene-question">
+
+    <div class="greek-window" id="greekWindow">
+
+      <!-- Barra de título estilo ventana -->
+      <div class="win-bar">
+        <div class="win-dots">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+        </div>
+        <span class="win-label">✦ AMOR ✦</span>
+        <span class="win-controls">—  □  ✕</span>
+      </div>
+
+      <!-- Cuerpo de la ventana -->
+      <div class="win-body">
+        <div class="deco-rule"><span>⊱ ─── ✦ ─── ⊰</span></div>
+
+        <p class="win-question">¿Serás mi Valentine?</p>
+
+        <!--
+        ╔════════════════════════════════════════════╗
+        ║  🐱 GATITO — CÓMO CAMBIAR A TU IMAGEN     ║
+        ║                                            ║
+        ║  OPCIÓN A (emoji, por defecto):            ║
+        ║    No hagas nada, déjalo como está.        ║
+        ║                                            ║
+        ║  OPCIÓN B (imagen propia .png / .gif):     ║
+        ║    1. Pon tu imagen en la misma carpeta    ║
+        ║       que este index.html                  ║
+        ║    2. Comenta o borra el div.cat-emoji     ║
+        ║    3. Descomenta la línea <img ...> abajo  ║
+        ║    4. Cambia "tu-gato.png" por el nombre   ║
+        ║       real de tu archivo                   ║
+        ╚════════════════════════════════════════════╝
+        -->
+        <div class="cat-area">
+          <div class="cat-emoji" id="cat">🐱</div>
+          <!-- <img src="tu-gato.png" class="cat-img" id="cat" alt="Gatito"> -->
+        </div>
+
+        <!-- Los botones: SÍ fijo, NO escapa con el cursor -->
+        <div class="win-btns" id="winBtns">
+          <button class="btn btn-yes" onclick="pressYes()">SÍ &nbsp;💕</button>
+          <button class="btn btn-no" id="btnNo">NO</button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ESCENA 3 — CARTA ROMÁNTICA FINAL
+  ══════════════════════════════════════════════════ -->
+  <section class="scene" id="scene-letter">
+
+    <div class="letter-paper" id="letterPaper">
+
+      <!-- Encabezado decorativo -->
+      <header class="letter-head">
+        <div class="orn-line"><span>✦</span></div>
+        <h2 class="letter-heading">Carta Para Ti</h2>
+        <div class="orn-line"><span>✦</span></div>
+      </header>
+
+      <!--
+      ╔══════════════════════════════════════════════════════╗
+      ║  📜  AQUÍ ESTÁ EL TEXTO DE TU CARTA                 ║
+      ║  Archivo: index.html  •  Busca "PÁRRAFO 1" abajo    ║
+      ║                                                      ║
+      ║  • Cambia el texto dentro de cada <p class="l-p">   ║
+      ║  • Agrega más párrafos copiando una etiqueta <p>    ║
+      ║  • Puedes usar <br> para saltos de línea            ║
+      ║  • Cambia la FIRMA al final de este bloque          ║
+      ╚══════════════════════════════════════════════════════╝
+      -->
+      <div class="letter-body">
+
+        <!-- ► PÁRRAFO 1: Escribe aquí tu primer párrafo ◄ -->
+        <p class="l-p">
+          Desde que el destino, en su infinita sabiduría,<br>
+          tejió el hilo dorado de nuestros caminos,<br>
+          cada aurora trae consigo tu nombre<br>
+          como la más dulce de las odas.
+        </p>
+
+        <!-- ► PÁRRAFO 2: Escribe aquí tu segundo párrafo ◄ -->
+        <p class="l-p">
+          Como Afrodita guía a los enamorados<br>
+          por mares de mármol y cielos de rosa,<br>
+          así me guías tú, con tu sola presencia,<br>
+          hacia el más bello de los horizontes.
+        </p>
+
+        <!--
+          ► PÁRRAFO 3 (opcional): Descomenta y edita ◄
+        <p class="l-p">
+          Escribe aquí tu tercer párrafo...
+        </p>
+        -->
+
+        <!--
+        ╔══════════════════════════════════════════════════╗
+        ║  📷  PONER UNA IMAGEN DENTRO DE LA CARTA        ║
+        ║                                                  ║
+        ║  1. Copia tu imagen a la misma carpeta del       ║
+        ║     proyecto (donde está index.html)             ║
+        ║  2. Descomenta el bloque <div> de abajo          ║
+        ║  3. Cambia "tu-imagen.png" por el nombre real    ║
+        ║     de tu archivo (puede ser .png .jpg .gif)     ║
+        ╚══════════════════════════════════════════════════╝
+
+        <div class="l-img-wrap">
+          <img src="tu-imagen.png" alt="" class="l-img">
+        </div>
+        -->
+
+        <!-- ► FIRMA: Cambia "Tu Nombre Aquí" ◄ -->
+        <p class="l-sign">
+          Con amor eterno,<br>
+          <em class="l-name">— Tu Nombre Aquí —</em>
+        </p>
+
+      </div>
+
+      <!-- Pie decorativo -->
+      <footer class="letter-foot">
+        <div class="orn-line"><span>⌘</span></div>
+        <p class="l-date">San Valentín &nbsp;·&nbsp; XIV · II · MMXXV</p>
+        <div class="orn-line"><span>⌘</span></div>
+      </footer>
+
+    </div>
+
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
