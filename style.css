@@ -76,8 +76,8 @@ body {
 
 /* ANIMACIÓN DE REBOTE LIGERO */
 .cat-container {
-    width: 90px; /* Tamaño del área del ángel */
-    height: 90px;
+    width: 80px; /* Tamaño del área del ángel */
+    height: 80px;
     margin: 10px auto;
     /* Aplica la animación 'bounce' */
     animation: bounce 0.8s infinite alternate ease-in-out;
@@ -99,14 +99,12 @@ body {
 h1 { font-size: 14px; line-height: 1.5; color: #333; }
 
 .btn-group {
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
-    gap: 80px; /* Espacio de sobra entre botones */
+    gap: 20px;
     position: relative;
     width: 100%;
     justify-content: center;
-    align-items: center;
-    height: 60px; 
 }
 
 button {
@@ -116,18 +114,13 @@ button {
     cursor: pointer;
     background: white;
     font-size: 12px;
-    z-index: 5; /* Asegura que se puedan clickear bien */
 }
 
-#yes-btn { 
-    background: #90ee90; 
-}
-
+#yes-btn { background: #90ee90; }
 #no-btn { 
     background: #ffcccb; 
     position: absolute;
-    /* Esto lo separa hacia la derecha sin encimarse */
-    left: 60%; 
+    left: 210px; /* Posición inicial */
 }
 
 /* Carta Final */
