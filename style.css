@@ -86,7 +86,7 @@ body {
 /* Estilo para que la imagen se vea nítida (Pixel Art) */
 .pixel-cat {
     image-rendering: pixelated;
-    width: 100%;
+    max-width: 150px;
     height: auto;
 }
 
