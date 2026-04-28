@@ -6,6 +6,7 @@
 
 body {
     margin: 0;
+    padding: 0;
     background-color: #d1d1d1;
     background-image: radial-gradient(#aaa 1px, transparent 1px);
     background-size: 20px 20px;
@@ -17,78 +18,25 @@ body {
     overflow: hidden;
 }
 
+/* Contenedor principal con borde griego */
 .game-container {
     position: relative;
-    width: 450px;
-    height: 350px;
+    width: 400px;
+    height: 300px;
     background: var(--marble);
     border: 8px solid var(--gold);
+    /* Borde de Greca en Pixel Art (generado con SVG) */
     border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M0 0h16v16H0V0zm2 2v12h12V2H2zm2 2h6v2H6v4h6V6h2v6H4V4z' fill='%23d4af37'/%3E%3C/svg%3E") 4 repeat;
     box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* El Ángel y su rebote */
-.angel-wrapper {
-    width: 100%;
-    height: 140px; /* Espacio reservado para el ángel */
-    display: flex;
     justify-content: center;
-    align-items: flex-end; /* Lo pega un poco más al texto */
-    margin-top: 10px;
-    animation: bounce 0.8s infinite alternate ease-in-out;
-}
-
-.pixel-angel {
-    image-rendering: pixelated;
-    height: 140px; /* Tamaño del ángel */
-    width: auto;
-}
-
-@keyframes bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(-10px); }
-}
-
-h1 {
-    font-size: 12px;
-    color: #333;
-    margin: 20px 0;
+    align-items: center;
     text-align: center;
-    line-height: 1.6;
+    padding: 20px;
 }
 
-/* Botones */
-.btn-group {
-    width: 100%;
-    height: 50px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-}
-
-button {
-    font-family: 'Press Start 2P', cursive;
-    padding: 10px 15px;
-    border: 4px solid #000;
-    cursor: pointer;
-    background: #90ee90;
-    font-size: 12px;
-}
-
-#no-btn { 
-    background: #ffcccb; 
-    position: absolute;
-    left: 240px; /* Posición inicial separada */
-}
-
-/* Capas adicionales */
+/* Capa de la carta cerrada */
 #envelope-layer {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -97,30 +45,120 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 20;
     cursor: pointer;
+    z-index: 20;
+    transition: transform 0.8s ease, opacity 0.5s;
 }
 
-.opened { transform: translateY(-100%); opacity: 0; pointer-events: none; transition: 0.8s; }
+.pixel-envelope {
+    width: 80px;
+    height: 60px;
+    background: white;
+    border: 4px solid var(--gold);
+    position: relative;
+    margin-bottom: 20px;
+}
 
+.pixel-envelope::after {
+    content: "♥";
+    color: var(--pink);
+    font-size: 20px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.opened {
+    transform: translateY(-100%) rotate(-5deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ANIMACIÓN DE REBOTE LIGERO */
+.cat-container {
+    width: 90px; /* Tamaño del área del ángel */
+    height: 90px;
+    margin: 10px auto;
+    /* Aplica la animación 'bounce' */
+    animation: bounce 0.8s infinite alternate ease-in-out;
+}
+
+/* Estilo para que la imagen se vea nítida (Pixel Art) */
+.pixel-cat {
+    image-rendering: pixelated;
+    width: 100%;
+    height: auto;
+}
+
+/* Definición del movimiento de rebote */
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-8px); } /* Rebote ligero de 8px */
+}
+
+h1 { font-size: 14px; line-height: 1.5; color: #333; }
+
+.btn-group {
+    margin-top: 30px;
+    display: flex;
+    gap: 80px; /* Espacio de sobra entre botones */
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 60px; 
+}
+
+button {
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px 15px;
+    border: 4px solid #000;
+    cursor: pointer;
+    background: white;
+    font-size: 12px;
+    z-index: 5; /* Asegura que se puedan clickear bien */
+}
+
+#yes-btn { 
+    background: #90ee90; 
+}
+
+#no-btn { 
+    background: #ffcccb; 
+    position: absolute;
+    /* Esto lo separa hacia la derecha sin encimarse */
+    left: 60%; 
+}
+
+/* Carta Final */
 #final-letter {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: white;
+    background: #fff;
     z-index: 30;
     display: none;
-    padding: 20px;
-    border: 6px double var(--gold);
+    padding: 30px;
     box-sizing: border-box;
+    border: 8px double var(--gold);
+    overflow-y: auto;
 }
 
+.scroll-text {
+    font-size: 10px;
+    line-height: 2;
+    color: #444;
+    text-align: left;
+}
+
+/* Columnas de Mármol */
 .marble-column {
     position: absolute;
-    width: 30px;
+    width: 40px;
     height: 110%;
-    background: #eee;
-    border: 2px solid #ccc;
+    background: #e0e0e0;
+    border-left: 4px solid #ccc;
+    border-right: 4px solid #fff;
     top: -5%;
 }
-.column-left { left: -40px; }
-.column-right { right: -40px; }
+.column-left { left: -50px; }
+.column-right { right: -50px; }
