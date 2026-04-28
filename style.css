@@ -76,10 +76,14 @@ body {
 
 /* ANIMACIÓN DE REBOTE LIGERO */
 .cat-container {
-    width: 80px; /* Tamaño del área del ángel */
-    height: 80px;
-    margin: 10px auto;
-    /* Aplica la animación 'bounce' */
+    width: 100%;             /* Usa todo el ancho */
+    height: auto;            /* Altura automática */
+    /* --- CAMBIA ESTO --- */
+    margin: 20px auto -30px auto; /* ¡NUEVO! Empuja al ángel 30px hacia arriba */
+    display: flex;           /* Para centrar al ángel perfectamente */
+    justify-content: center;
+    align-items: center;     /* Centrado vertical */
+    /* Mantenemos el rebote */
     animation: bounce 0.8s infinite alternate ease-in-out;
 }
 
